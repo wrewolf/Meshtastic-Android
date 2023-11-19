@@ -2,6 +2,7 @@ package com.geeksville.mesh
 
 import android.graphics.Color
 import android.os.Parcelable
+import androidx.room.ColumnInfo
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -183,6 +184,8 @@ data class NodeInfo(
     var position: Position? = null,
     var snr: Float = Float.MAX_VALUE,
     var rssi: Int = Int.MAX_VALUE,
+    @ColumnInfo(defaultValue = "0")
+    var hopLimit: Int? = 0, // 0 as simple zero when not filled
     var lastHeard: Int = 0, // the last time we've seen this node in secs since 1970
     @Embedded(prefix = "devMetrics_")
     var deviceMetrics: DeviceMetrics? = null,

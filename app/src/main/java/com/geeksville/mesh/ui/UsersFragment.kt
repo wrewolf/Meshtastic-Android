@@ -260,7 +260,7 @@ class UsersFragment : ScreenFragment("Users"), Logging {
                     if (n.channel > 0) append("ch:${n.channel}")
                     if (n.snr < 100f && n.rssi < 0) {
                         if (isNotEmpty()) append(" ")
-                        append("rssi:%d snr:%.1f".format(n.rssi, n.snr))
+                        append("rssi:%d snr:%.1f hops:%d".format(n.rssi, n.snr, n.hopLimit))
                     }
                 }
                 if (text.isNotEmpty()) {
@@ -351,6 +351,7 @@ class UsersFragment : ScreenFragment("Users"), Logging {
                 .setTitle(R.string.traceroute)
                 .setMessage(response ?: return@observe)
                 .setPositiveButton(R.string.okay) { _, _ -> }
+                .setCancelable(false)
                 .show()
 
             model.clearTracerouteResponse()
